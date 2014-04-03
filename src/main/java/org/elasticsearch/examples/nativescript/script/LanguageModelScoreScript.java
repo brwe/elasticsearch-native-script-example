@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
-import org.elasticsearch.ElasticSearchException;
+import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.common.Nullable;
 import org.elasticsearch.index.fielddata.ScriptDocValues;
 import org.elasticsearch.script.AbstractSearchScript;
@@ -70,7 +70,7 @@ public class LanguageModelScoreScript extends AbstractSearchScript {
         // get lambda
         lambda = ((Double) params.get("lambda")).floatValue();
         if (field == null || terms == null || docLengthField == null) {
-            throw new ElasticSearchException("cannot initialize " + SCRIPT_NAME + ": field, terms or length field parameter missing!");
+            throw new ElasticsearchException("cannot initialize " + SCRIPT_NAME + ": field, terms or length field parameter missing!");
         }
     }
 
@@ -120,11 +120,11 @@ public class LanguageModelScoreScript extends AbstractSearchScript {
                 }
                 return score;
             } else {
-                throw new ElasticSearchException("Could not compute language model score, word count field missing.");
+                throw new ElasticsearchException("Could not compute language model score, word count field missing.");
             }
 
         } catch (IOException ex) {
-            throw new ElasticSearchException("Could not compute language model score: ", ex);
+            throw new ElasticsearchException("Could not compute language model score: ", ex);
         }
     }
 

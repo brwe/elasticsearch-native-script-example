@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.elasticsearch.ElasticSearchException;
+import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.common.Nullable;
 import org.elasticsearch.script.AbstractSearchScript;
 import org.elasticsearch.script.ExecutableScript;
@@ -61,7 +61,7 @@ public class PhraseScoreScript extends AbstractSearchScript {
         // get the field
         field = (String) params.get("field");
         if (field == null || terms == null) {
-            throw new ElasticSearchException("cannot initialize " + SCRIPT_NAME + ": field or terms parameter missing!");
+            throw new ElasticsearchException("cannot initialize " + SCRIPT_NAME + ": field or terms parameter missing!");
         }
         assert (terms.size() == 2);
     }

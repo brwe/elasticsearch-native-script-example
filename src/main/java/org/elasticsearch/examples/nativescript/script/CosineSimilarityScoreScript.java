@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
-import org.elasticsearch.ElasticSearchException;
+import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.common.Nullable;
 import org.elasticsearch.script.AbstractSearchScript;
 import org.elasticsearch.script.ExecutableScript;
@@ -64,10 +64,10 @@ public class CosineSimilarityScoreScript extends AbstractSearchScript {
         // get the field
         field = (String) params.get("field");
         if (field == null || terms == null || weights == null) {
-            throw new ElasticSearchException("cannot initialize " + SCRIPT_NAME + ": field, terms or weights parameter missing!");
+            throw new ElasticsearchException("cannot initialize " + SCRIPT_NAME + ": field, terms or weights parameter missing!");
         }
         if (weights.size() != terms.size()) {
-            throw new ElasticSearchException("cannot initialize " + SCRIPT_NAME + ": terms and weights array must have same length!");
+            throw new ElasticsearchException("cannot initialize " + SCRIPT_NAME + ": terms and weights array must have same length!");
         }
     }
 
@@ -95,7 +95,7 @@ public class CosineSimilarityScoreScript extends AbstractSearchScript {
             }
             return score / (Math.sqrt(docWeightSum) * Math.sqrt(queryWeightSum));
         } catch (IOException ex) {
-            throw new ElasticSearchException("Could not compute cosine similarity: ", ex);
+            throw new ElasticsearchException("Could not compute cosine similarity: ", ex);
         }
     }
 
